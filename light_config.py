@@ -8,3 +8,9 @@ class LightConfig(object):
   
   def GetBridgeIp(self):
     return self.config.get('Bridge', 'ip')
+
+  def GetGroups(self):
+    groups = []
+    for x in self.config.items('Groups'):
+      groups.append(x[0])
+    return sorted(groups)
