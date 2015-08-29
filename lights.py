@@ -1,12 +1,13 @@
 #!/usr/bin/python
+import light_config
+
 from phue import Bridge
 
 import sys
 
-b = Bridge('10.0.1.24') # Enter bridge IP here.
+config = light_config.LightConfig("testdata/lights_test.config")
 
-#If running for the first time, press button on bridge and run with b.connect() uncommented
-#b.connect()
+b = Bridge(config.GetBridgeIp())
 
 lights = b.get_light_objects()
 
