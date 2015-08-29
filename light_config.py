@@ -1,16 +1,18 @@
 #!/usr/bin/python
-import ConfigParser
+from google.protobuf import text_format
+from proto import config_pb2
 
 class LightConfig(object):
   def __init__(self, config_file):
-    self.config = ConfigParser.SafeConfigParser()
-    self.config.read('testdata/lights_test.config')
-  
-  def GetBridgeIp(self):
-    return self.config.get('Bridge', 'ip')
+    self.config_file = config_file
+    self.ReadConfigFromFile()
 
-  def GetGroups(self):
-    groups = []
-    for x in self.config.items('Groups'):
-      groups.append(x[0])
-    return sorted(groups)
+  def ReadConfigFromFile(self):
+    f = open(self.config_file, 'r')
+    self.config = config_pb2.AutoHueConfig()
+    text_format.Merge(f.read(), self.config)
+    f.close()
+
+  def GetBridgeIp(self):
+    return self.config.bridge_info.ip_address
+

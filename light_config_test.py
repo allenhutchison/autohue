@@ -9,10 +9,7 @@ class TestLightConfig(unittest.TestCase):
     self.lc = light_config.LightConfig(self.config_file)
   
   def test_ip(self):
-    self.assertEqual('192.168.1.143', self.lc.GetBridgeIp())
-
-  def test_groups(self):
-    self.assertEqual(['kitchen', 'living_room', 'porch'], self.lc.GetGroups())
+    self.assertEqual('2.2.2.2', self.lc.GetBridgeIp())
 
 
 if __name__ == '__main__':

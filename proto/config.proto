@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message BridgeInfo {
+  required string ip_address = 1;
+}
+
+message AutoHueConfig {
+  required BridgeInfo bridge_info = 1;
+}
